@@ -1,10 +1,7 @@
-package main
+package res
 
-import (
-
-)
-
-func intoPost(infix string) string {
+// IntoPost function
+func IntoPost(infix string) string {
 	specials := map[rune]int{'*':10, '.': 9, '|': 8}
 
 	pofix, stack := []rune{}, []rune{}
