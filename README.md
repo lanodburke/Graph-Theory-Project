@@ -4,6 +4,48 @@ Go program to build a non-deterministic finite automaton (NFA) from a regular ex
 
 ## Research and Development
 
+For the project I followed a set of steps set out in the project specification that are set as follows:
+
+* Parse the regular expression from infix to postfix notation.
+   * To parse the regular expression from infix to postfix I used this resource [here](http://jacobappleton.io/2015/07/02/regex-ii-the-shunting-yard-algorithm/). This article outlines how the shunting-yard algorithm works, and also how to implement it in code. This algorithm uses a stack to hold operators rather than numbers. The purpose of the stack is to reverse the order of the operators in the expression. It also serves as a storage structure, since no operator can be printed until both of its operands have appeared.
+
+      Here is a code sample of the shunting-yard algorithm in Go.
+      ```go
+      func IntoPost(infix string) string {
+        specials := map[rune]int{'*':10, '.': 9, '|': 8}
+
+        pofix, stack := []rune{}, []rune{}
+
+        for _, r := range infix {
+          switch {
+          case r == '(':
+            stack = append(stack, r)
+          case r == ')':
+            for stack[len(stack)-1] != '(' {
+              pofix, stack = append(pofix, stack[len(stack)-1]), stack[:len(stack)-1]
+            }
+            stack = stack[:len(stack)-1]
+          case specials[r] > 0:
+            for len(stack) > 0 && specials[r] <= specials[stack[len(stack)-1]] {
+              pofix, stack = append(pofix, stack[len(stack)-1]), stack[:len(stack)-1]
+            }
+            stack = append(stack, r)
+          default: 
+            pofix = append(pofix, r)
+          }
+        }
+
+        for len(stack) > 0 {
+          pofix, stack = append(pofix, stack[len(stack)-1]), stack[:len(stack)-1]
+        }
+
+        return string(pofix)
+       }
+      ```
+  
+* Build a series of small NFA’s for parts of the regular expression.
+* Use the smaller NFA’s to create the overall NFA.
+* Implement the matching algorithm using the NFA.
 
 ## Getting Started
 
