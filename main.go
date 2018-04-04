@@ -6,11 +6,10 @@ import (
 )
 
 func menu() {
-	fmt.Print("Enter option: \n\t1): Enter infix string to NFA conversion. \n\t2): Enter postfix string to NFA conversion. \n\t3) To exit.")
+	fmt.Print("Enter option: \n\t1): Enter infix string to NFA conversion. \n\t2): Enter postfix string to NFA conversion. \n\t3): To exit.\n\n\tInput here: ")
     var input int
 	fmt.Scanln(&input)
 	
-
 	switch input {
 	case 1: 
 		var infix string
@@ -20,27 +19,25 @@ func menu() {
 		infixToPostfix := res.IntoPost(infix)
 
 		var userInput string
-		fmt.Print("Enter infix string: ")
+		fmt.Print("Enter string to test against NFA: ")
 		fmt.Scanln(&userInput)
 
 		fmt.Println("Match: ", res.Pomatch(infixToPostfix, userInput))
+
+	case 2: 
+		var postfix string
+		fmt.Print("Enter postfix string: ")
+		fmt.Scanln(&postfix)
+
+		var userInput string
+		fmt.Print("Enter string to test against NFA: ")
+		fmt.Scanln(&userInput)
+
+		fmt.Println("Match: ", res.Pomatch(postfix, userInput))
 	}
+	
 }
 
 func main() {
-	fmt.Println("Infix:		", "a.b.c*")
-	fmt.Println("Postfix:		", res.IntoPost("a.b.c*"))
-
-	fmt.Println("Infix:		", "(a.(b|d))*")
-	fmt.Println("Postfix:		", res.IntoPost("(a.(b|d))*"))
-
-	fmt.Println("Infix:		", "a.(b|d).c*")
-	fmt.Println("Postfix:		", res.IntoPost("a.(b|d).c*"))
-
-	fmt.Println("Infix:		", "a.(b.b)+.c")
-	fmt.Println("Postfix:		", res.IntoPost("a.(b.b)+.c"))
-
-
-
-
+	menu()
 }
