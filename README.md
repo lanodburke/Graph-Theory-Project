@@ -44,5 +44,5 @@ To run this program you will need to have Go installed on your machine, if you d
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 
