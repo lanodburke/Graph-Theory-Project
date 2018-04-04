@@ -77,7 +77,7 @@ func Poregtonfa(pofix string) *Nfa {
 func addState(l []*State, s *State, a *State) []*State {
 	l = append(l,s)
 
-	if s.symbol == 0 {
+	if s != a && s.symbol == 0 {
 		l = addState(l, s.edge1, a)
 		if s.edge2 != nil {
 			l = addState(l, s.edge2, a)
@@ -87,7 +87,8 @@ func addState(l []*State, s *State, a *State) []*State {
 	return l
 }
 
-func pomatch(po string, s string) bool {
+// Pomatch function
+func Pomatch(po string, s string) bool {
 	ismatch := false
 	ponfa := Poregtonfa(po)
 
