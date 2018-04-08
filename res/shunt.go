@@ -2,7 +2,7 @@ package res
 
 // IntoPost function
 func IntoPost(infix string) string {
-	specials := map[rune]int{'*':10, '.': 9, '|': 8}
+	specials := map[rune]int{'*':10, '.': 9, '|': 8, '?': 7, '+': 6}
 
 	pofix, stack := []rune{}, []rune{}
 
