@@ -44,9 +44,8 @@ For the project I followed a set of steps set out in the project specification t
       ```
   
 * Build a series of small NFA’s for parts of the regular expression.
-* Use the smaller NFA’s to create the overall NFA.
-* Implement the matching algorithm using the NFA.
-
+  * I used Thompson's construction algorithm to build a series of small Nfa's. Thompson's construction algorithm can be defined as           transforming a regular expression into an equivalent nondeterministic finite automaton. 
+    
 ## Getting Started
 
 To run the program first you will need to clone this repository onto your local machine.
@@ -73,10 +72,6 @@ On macOS run this command.
 ## Prerequisites
 
 To run this program you will need to have Go installed on your machine, if you do not have it installed there is a detailed run through on how to install and setup go on your machine found [here](https://golang.org/doc/install)
-
-
-## Demonstration
-
 
 ## References
 
